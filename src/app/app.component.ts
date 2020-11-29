@@ -22,16 +22,21 @@ export class AppComponent {
 
   email: string = "";
   password: string = "";
+
   venue: string = "";
-  payment: number = 0;
+  date: string = "";
+  time: string = "";
+
+  payment: number;
   payer: string = "";
+
   games;
 
   constructor(
     private auth: AngularFireAuth,
     private firestore: AngularFirestore
   ) {
-    this.games = snapshotToData(firestore.collection("games").snapshotChanges());
+    this.games = snapshotToData(firestore.collection("games", ref => ref.where("payment", "==", 0)).snapshotChanges());
   }
   
   async registerWithEmailAndPassword(){
@@ -67,7 +72,9 @@ export class AppComponent {
   createGame(){
     this.firestore.collection('games').add({
       venue: this.venue,
-      payment: 0, 
+      payment: 0,
+      date: this.date,
+      time: this.time,
     })
   }
 

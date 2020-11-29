@@ -1,22 +1,34 @@
-<input type="email" placeholder="Email" [(ngModel)]="email">
-<input type="password" placeholder="Password" [(ngModel)]="password">
+<input type="email" placeholder="Email" [(ngModel)]="email" />
+<input type="password" placeholder="Password" [(ngModel)]="password" />
 
-<input type="button" value="register" (click)="registerWithEmailAndPassword()">
-<input type="button" value="login" (click)="loginWithEmailAndPassword()">
+<input
+  type="button"
+  value="register"
+  (click)="registerWithEmailAndPassword()"
+/>
+<input type="button" value="login" (click)="loginWithEmailAndPassword()" />
 
-<input type="button" value="login with google" (click)="loginWithGoogle()">
+<input type="button" value="login with google" (click)="loginWithGoogle()" />
 
-<input type="button" value="logout" (click)="logout()">
+<input type="button" value="logout" (click)="logout()" />
+<div>
+  <input type="text" placeholder="Venue" [(ngModel)]="venue" />
+  <input type="date" [(ngModel)]="date" />
+  <input type="time" [(ngModel)]="time" />
 
-<input type="text" placeholder="Venue"  [(ngModel)]="venue">
-<input type="button" value="games" (click)="createGame()">
+  <input type="button" value="confirm" (click)="createGame()" />
+</div>
 
 <div>
+  <input type="text" placeholder="Enter payment" [(ngModel)]="payment" />
+  <input type="text" placeholder="Enter Name" [(ngModel)]="payer" />
   <div *ngFor="let game of games | async">
-    <span>{{game.data.venue}}</span>
-      <input type="text" placeholder="Enter payment" [(ngModel)]="payment">
-      <input type="text" placeholder="Enter Name" [(ngModel)]="payer">
-      <input type="button" value="confirm payment" (click)="confirmPayment(game.id)">
-      <input type="button" value="x" (click)="deleteGame(game.id)">
+    <span>{{ game.data.venue }}</span>
+    <input
+      type="button"
+      value="confirm payment"
+      (click)="confirmPayment(game.id)"
+    />
+    <input type="button" value="x" (click)="deleteGame(game.id)" />
   </div>
 </div>
