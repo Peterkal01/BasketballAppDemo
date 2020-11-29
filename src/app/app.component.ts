@@ -23,6 +23,8 @@ export class AppComponent {
   email: string = "";
   password: string = "";
 
+  loggedIn: Observable<boolean>;
+
   venue: string = "";
   date: string = "";
   time: string = "";
@@ -33,7 +35,7 @@ export class AppComponent {
   games;
 
   constructor(
-    private auth: AngularFireAuth,
+    public auth: AngularFireAuth,
     private firestore: AngularFirestore
   ) {
     this.games = snapshotToData(firestore.collection("games", ref => ref.where("payment", "==", 0)).snapshotChanges());
